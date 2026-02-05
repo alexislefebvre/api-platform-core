@@ -16,6 +16,7 @@ namespace ApiPlatform\Tests\Fixtures\TestBundle\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\McpTool;
 use ApiPlatform\Metadata\McpToolCollection;
+use ApiPlatform\Tests\Fixtures\TestBundle\Dto\McpBookDto;
 use ApiPlatform\Tests\Fixtures\TestBundle\Dto\SearchDto;
 use ApiPlatform\Tests\Fixtures\TestBundle\State\McpBookListProcessor;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,6 +34,13 @@ use Doctrine\ORM\Mapping as ORM;
         'list_books' => new McpToolCollection(
             description: 'List Books',
             input: SearchDto::class,
+            processor: McpBookListProcessor::class,
+            structuredContent: true,
+        ),
+        'list_books_dto' => new McpToolCollection(
+            description: 'List Books and return a DTO',
+            input: SearchDto::class,
+            output: McpBookDto::class,
             processor: McpBookListProcessor::class,
             structuredContent: true,
         ),
